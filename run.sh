@@ -3,7 +3,15 @@ set -e
 
 pushd /app/links > /dev/null
 
-LINKS=(Earthquake Storage)
+LINKS=(
+  Earthquake
+  Storage
+  Markov
+  Geofence
+  YouTube
+  Weather
+  System
+)
 
 OUR_BROKER_URL="http://127.0.0.1:8080/conn"
 
@@ -24,6 +32,9 @@ do
   elif [ -f "/app/${LINK}/bin/run.dart" ]
   then
     dart "/app/${LINK}/bin/run.dart" --broker "${BROKER_URL}" &
+  elif [ -f "/app/${LINK}/index.js" ]
+  then
+    node "/app/${LINK}/index.js" --broker "${BROKER_URL}" &
   fi
   popd > /dev/null
 done
