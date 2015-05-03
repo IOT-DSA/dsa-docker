@@ -37,3 +37,5 @@ do
   git clone "https://github.com/${LINKS[$LINK]}.git" "${LINK}"
   setup_link "${LINK}"
 done
+
+pub global activate -sgit https://github.com/IOT-DSA/sdk-dslink-dart.git

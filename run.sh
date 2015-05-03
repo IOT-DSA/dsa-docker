@@ -20,6 +20,12 @@ then
   OUR_BROKER_URL="${BROKER_URL}"
 fi
 
+[ ! -d /app/links/Broker ] && mkdir /app/links/Broker
+
+pushd /app/links/Broker > /dev/null
+pub global run dslink:broker &
+popd > /dev/null
+
 for LINK in "${LINKS[@]}"
 do
   [ ! -d "/app/links/${LINK}" ] && mkdir "/app/links/${LINK}"

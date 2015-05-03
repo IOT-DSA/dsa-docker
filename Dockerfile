@@ -31,3 +31,5 @@ VOLUME /app/links
 
 CMD []
 ENTRYPOINT ["bash", "run.sh"]
+
+EXPOSE 8080
