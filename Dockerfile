@@ -23,7 +23,7 @@ RUN \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - && apt-get install -y nodejs
-RUN apt-get install -y net-tools
+RUN apt-get install -y net-tools make gcc g++
 
 RUN bash setup.sh
 

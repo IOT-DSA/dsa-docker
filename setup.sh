@@ -6,6 +6,11 @@ declare -A LINKS
 LINKS=(
   [Earthquake]=IOT-DSA/dslink-dart-earthquake
   [Storage]=IOT-DSA/dslink-dart-storage
+  [Markov]=IOT-DSA/dslink-dart-markov
+  [Geofence]=IOT-DSA/dslink-dart-geofence
+  [YouTube]=IOT-DSA/dslink-dart-youtube
+  [Weather]=IOT-DSA/dslink-dart-weather
+  [System]=IOT-DSA/dslink-javascript-system
 )
 
 function setup_link() {
