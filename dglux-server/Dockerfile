@@ -3,7 +3,7 @@ WORKDIR /app
 VOLUME ["/data"]
 
 # Configuration
-ARG DIST_BUILD_ID=627
+ARG DIST_BUILD_ID=latest
 
 ENV DIST_URL=https://dsa.s3.amazonaws.com/dists/dglux_server/${DIST_BUILD_ID}/dglux_server.zip
 
@@ -30,4 +30,4 @@ RUN \
 EXPOSE 8080
 WORKDIR /data
 
-CMD ["/usr/bin/dart", "bin/server_watcher.dart", "--log-file=logs/dglux_server.log"]
+CMD ["/usr/bin/dart", "/app/bin/server_watcher.dart", "--log-file=logs/dglux_server.log"]
