@@ -4,8 +4,7 @@ VOLUME ["/data"]
 
 # Configuration
 ARG DIST_BUILD_ID=latest
-
-ENV DIST_URL=https://dsa.s3.amazonaws.com/dists/dglux_server/${DIST_BUILD_ID}/dglux_server.zip
+ARG DIST_URL=https://dsa.s3.amazonaws.com/dists/dglux_server/${DIST_BUILD_ID}/dglux_server.zip
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes zip unzip procps wget
