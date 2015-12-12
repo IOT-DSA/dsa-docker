@@ -1,6 +1,6 @@
 FROM google/dart:latest
 WORKDIR /app
-VOLUME ["/app"]
+VOLUME ["/data"]
 
 # Configuration
 ARG DIST_BUILD_ID=627
@@ -8,7 +8,7 @@ ARG DIST_BUILD_ID=627
 ENV DIST_URL=https://dsa.s3.amazonaws.com/dists/dglux_server/${DIST_BUILD_ID}/dglux_server.zip
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes zip unzip procps
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes zip unzip procps wget
 
 RUN \
     echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list  && \
@@ -22,9 +22,12 @@ RUN \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
-ADD ${DIST_URL} build.zip
-RUN unzip build.zip && rm build.zip
+RUN \
+  wget ${DIST_URL} -O build.zip && \
+  unzip build.zip && \
+  rm build.zip
 
 EXPOSE 8080
+WORKDIR /data
 
 CMD ["/usr/bin/dart", "bin/server_watcher.dart", "--log-file=logs/dglux_server.log"]
