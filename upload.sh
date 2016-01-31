@@ -3,7 +3,7 @@ set -e
 
 source config.sh
 
-for LINK in ${DOCKER_LINKS}
+for LINK in ${DOCKER_LINKS[*]}
 do
   docker push iotdsa/${LINK}:latest
 done
