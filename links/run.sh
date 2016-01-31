@@ -7,7 +7,7 @@ cd /data
 
 if [ -z ${BROKER_URL} ]
 then
-  export BROKER_URL="http://127.0.0.1:8080/conn"
+  export BROKER_URL="http://127.0.0.1/conn"
 fi
 
 cleanup() {

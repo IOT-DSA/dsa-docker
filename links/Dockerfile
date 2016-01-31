@@ -11,8 +11,9 @@ ARG LINKS=""
 ENV LINKS ${LINKS}
 
 RUN \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes bsdtar zip unzip procps wget
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes \
+      bsdtar zip unzip procps wget openssl
 
 RUN \
     echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list  && \

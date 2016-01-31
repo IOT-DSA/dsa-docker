@@ -26,7 +26,9 @@ RUN \
   unzip build.zip && \
   rm build.zip
 
-EXPOSE 8080
+RUN echo "${DIST_URL}" > .docker
+
+EXPOSE 80 443
 WORKDIR /data
 
 CMD ["/usr/bin/dart", "/app/bin/server_watcher.dart", "--log-file=logs/dglux_server.log"]
