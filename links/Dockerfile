@@ -1,4 +1,6 @@
 FROM google/dart:latest
+MAINTAINER Kenneth Endfinger <k.endfinger@dglogik.com>
+
 WORKDIR /app
 VOLUME ["/data"]
 
@@ -6,6 +8,7 @@ COPY setup.dart run.sh util.dart /app/
 
 # Configuration
 ARG LINKS=""
+ENV LINKS ${LINKS}
 
 RUN \
   apt-get update && \

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+cd /app
+dart setup.dart
+cd /data
+
 if [ -z ${BROKER_URL} ]
 then
   export BROKER_URL="http://127.0.0.1:8080/conn"
