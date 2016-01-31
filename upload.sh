@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-docker push iotdsa/etsdb:latest
+source config.sh
+
+for LINK in ${DOCKER_LINKS}
+do
+  docker push iotdsa/${LINK}:latest
+done

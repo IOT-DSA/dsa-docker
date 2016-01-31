@@ -263,15 +263,24 @@ class Downloader {
       fileSize = "${(response.contentLength / (1024 * 1024)).toStringAsFixed(2)}mb";
     }
 
+    bool enableFancyProgress = !Platform.environment.containsKey("CI");
+
     message = message.replaceAll("{file.size}", fileSize);
 
-    stdout.write("${message} ${last}");
+    if (enableFancyProgress) {
+      stdout.write("${message} ${last}");
+    } else {
+      stdout.write("Download ${name} (${fileSize})");
+    }
+
     var watch = new Stopwatch();
 
     update(List<int> data) {
       progress += data.length;
       r.add(data);
-      stdout.write("\b" * last.length);
+      if (enableFancyProgress) {
+        stdout.write("\b" * last.length);
+      }
       var bms = (progress / 1024) / watch.elapsed.inSeconds;
       var pcnt = ((progress / response.contentLength) * 100).clamp(0, 100).toInt();
       var percent = pcnt ~/ 2;
@@ -300,7 +309,12 @@ class Downloader {
         }
         last += " (${out})";
       }
-      stdout.write(last);
+
+      if (enableFancyProgress) {
+        stdout.write(last);
+      } else {
+        stdout.write(".");
+      }
     }
 
     watch.start();
