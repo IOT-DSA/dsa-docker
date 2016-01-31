@@ -7,7 +7,7 @@ VOLUME ["/data"]
 COPY setup.dart run.sh util.dart /app/
 
 # Configuration
-ARG LINKS=""
+ARG LINKS
 ENV LINKS ${LINKS}
 
 RUN \
