@@ -2,7 +2,12 @@
 set -e
 
 cd /app
-dart setup.dart
+
+if [ "${UPDATE_LINKS}" == "true" ]
+then
+  dart setup.dart
+fi
+
 cd /data
 
 if [ -z ${BROKER_URL} ]
@@ -40,8 +45,6 @@ do
     echo "Failed to start ${LINK}: I don't understand how to start it."
   fi
 done
-
-cd /data
 
 waitall() { # PID...
   local errors=0

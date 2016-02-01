@@ -5,6 +5,7 @@ DOCKER_LINKS=(
   dslink-java-mqtt
   dslink-dart-schedule
   dslink-dart-dql
+  dslink-dart-weather
 )
 
 echo "== Docker Configuration =="
