@@ -1,5 +1,6 @@
 FROM iotdsa/base:latest
 
+RUN mkdir /data
 WORKDIR /app
 VOLUME ["/data"]
 
