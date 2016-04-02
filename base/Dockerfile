@@ -1,8 +1,8 @@
 FROM ubuntu:15.10
 MAINTAINER Kenneth Endfinger <k.endfinger@dglogik.com>
 
-# Use Dart Version 1.14.0
-ENV DART_VERSION 1.14.0
+# Use Dart Version 1.15.0
+ENV DART_VERSION 1.15.0
 
 # Install base software
 RUN apt-get update && \
