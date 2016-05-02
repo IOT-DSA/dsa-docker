@@ -6,6 +6,9 @@ source config.sh
 cd link-collection
 for LINK in ${DOCKER_LINKS[*]}
 do
-  docker build -t iotdsa/${LINK} --rm=true --build-arg LINKS="${LINK}" .
+  for FLAVOR in ${FLAVORS[*]}
+  do
+    docker build -f ${FLAVOR}/Dockerfile -t "iotdsa/${LINK}:${FLAVOR}" --rm=true --build-arg LINKS="${LINK}" .
+  done
 done
 cd ..

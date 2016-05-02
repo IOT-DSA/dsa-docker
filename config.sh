@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+DEFAULT_FLAVOR=ubuntu
+FLAVORS=()
+
+if [[ "$(uname -m)" == "x86_64" ]]
+then
+  FLAVORS+=(ubuntu debian)
+elif [[ "$(uname -m)" == "arm"* ]]
+then
+  FLAVORS+=(armhf)
+fi
+
 DOCKER_LINKS=(
   dslink-java-etsdb
   dslink-java-mqtt

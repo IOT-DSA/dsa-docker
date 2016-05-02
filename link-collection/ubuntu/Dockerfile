@@ -1,4 +1,4 @@
-FROM iotdsa/base:latest
+FROM iotdsa/base:ubuntu
 MAINTAINER Kenneth Endfinger <k.endfinger@dglogik.com>
 
 WORKDIR /app
