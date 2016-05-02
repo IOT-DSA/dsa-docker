@@ -1,4 +1,4 @@
-FROM iotdsa/base-arm:latest
+FROM iotdsa/base:armhf
 
 RUN mkdir /data
 WORKDIR /app
