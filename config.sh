@@ -17,6 +17,7 @@ DOCKER_LINKS=(
   dslink-dart-schedule
   dslink-dart-dql
   dslink-dart-weather
+  dslink-dart-system
 )
 
 echo "== Docker Configuration =="
