@@ -25,6 +25,34 @@ cleanup() {
 trap "cleanup" INT QUIT TERM EXIT
 
 PIDS=""
+SHARED_ARGS=""
+
+function add_shared_args() {
+  SHARED_ARGS="${SHARED_ARGS} ${*}"
+}
+
+add_shared_args --broker ${BROKER_URL}
+
+if [ ! -z ${LINK_TOKEN} ]
+then
+  add_shared_args --token ${LINK_TOKEN}
+fi
+
+if [ ! -z ${LINK_NAME} ]
+then
+  add_shared_args --name ${LINK_NAME}
+fi
+
+if [ ! -z ${LINK_LOG_LEVEL} ]
+then
+  add_shared_args --log ${LINK_LOG_LEVEL}
+fi
+
+if [ ! -z ${LINK_ARGS} ]
+then
+  add_shared_args "${LINK_ARGS}"
+fi
+
 for LINK in $(cat /app/links.dat)
 do
   cd /data
@@ -35,11 +63,11 @@ do
   cd ${LINK}
   if [ -f /app/${LINK}/bin/run.dart ]
   then
-    dart /app/${LINK}/bin/run.dart --broker ${BROKER_URL} &
+    dart /app/${LINK}/bin/run.dart ${SHARED_ARGS} &
     PIDS="${PIDS} $!"
   elif [ -x /app/${LINK}/bin/${LINK} ]
   then
-    /app/${LINK}/bin/${LINK} --broker ${BROKER_URL} -d /app/${LINK}/dslink.json &
+    /app/${LINK}/bin/${LINK} ${SHARED_ARGS} -d /app/${LINK}/dslink.json &
     PIDS="${PIDS} $!"
   else
     echo "Failed to start ${LINK}: I don't understand how to start it."
