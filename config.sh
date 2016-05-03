@@ -8,7 +8,7 @@ then
   FLAVORS+=(ubuntu debian fedora)
 elif [[ "$(uname -m)" == "arm"* ]]
 then
-  FLAVORS+=(armhf)
+  FLAVORS+=(armhf armhf-debian)
 fi
 
 DOCKER_LINKS=(
