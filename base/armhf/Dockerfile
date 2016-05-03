@@ -15,7 +15,7 @@ RUN \
   add-apt-repository -y ppa:webupd8team/java && \
   apt-get update && \
   apt-get install -y oracle-java8-installer && \
-  rm -rf /var/cache/oracle-jdk8-installer &&
+  rm -rf /var/cache/oracle-jdk8-installer && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
