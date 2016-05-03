@@ -5,7 +5,12 @@ for name in $(grep -l "FROM " -r . | grep "Dockerfile" | xargs dirname | sed 's/
 do
   tag="${name}"
 
-  if [[ "${name}" == "arm"* ]] && [[ "$(uname -m)" == "x86_64" ]]
+  if [[ "${name}" == "arm"* ]] && [[ "$(uname -m)" != "arm"* ]]
+  then
+    continue
+  fi
+
+  if [[ "${name}" != "arm"* ]] && [[ "$(uname -m)" == "arm"* ]]
   then
     continue
   fi
