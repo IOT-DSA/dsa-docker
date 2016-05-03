@@ -5,7 +5,7 @@ FLAVORS=()
 
 if [[ "$(uname -m)" == "x86_64" ]]
 then
-  FLAVORS+=(ubuntu debian)
+  FLAVORS+=(ubuntu debian fedora)
 elif [[ "$(uname -m)" == "arm"* ]]
 then
   FLAVORS+=(armhf)
