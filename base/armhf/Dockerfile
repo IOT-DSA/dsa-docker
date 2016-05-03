@@ -1,4 +1,4 @@
-FROM armv7/armhf-ubuntu:16.04
+FROM armv7/armhf-ubuntu:15.10
 MAINTAINER Kenneth Endfinger <k.endfinger@dglogik.com>
 
 # Use Dart Version 1.16.0
