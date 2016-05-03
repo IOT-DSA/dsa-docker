@@ -7,6 +7,7 @@ VOLUME ["/data"]
 # Configuration
 ARG DIST_BUILD_ID=latest
 ARG DIST_URL=https://dsa.s3.amazonaws.com/dists/dglux_server/${DIST_BUILD_ID}/dglux_server.zip
+ENV DIST_URL ${DIST_URL}
 
 COPY run.sh /app/
 
