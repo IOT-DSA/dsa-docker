@@ -6,9 +6,19 @@ FLAVORS=()
 if [[ "$(uname -m)" == "x86_64" ]]
 then
   FLAVORS+=(ubuntu debian)
+
+  if [[ ! -z "${BUILD_EXTRA_FLAVORS_X64}" ]]
+  then
+    FLAVORS+=${BUILD_EXTRA_FLAVORS_X64}
+  fi
 elif [[ "$(uname -m)" == "arm"* ]]
 then
   FLAVORS+=(armhf armhf-debian)
+
+  if [[ ! -z "${BUILD_EXTRA_FLAVORS_ARM}" ]]
+  then
+    FLAVORS+=${BUILD_EXTRA_FLAVORS_ARM}
+  fi
 fi
 
 DOCKER_LINKS=(
