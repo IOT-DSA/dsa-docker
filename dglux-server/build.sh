@@ -20,4 +20,10 @@ then
 
   docker tag iotdsa/dglux-server:${DEFAULT_FLAVOR} iotdsa/dglux-server:latest
   docker push iotdsa/dglux-server:latest
+
+  if [[ ! -z ${BUILD_NUMBER} ]]
+  then
+    docker tag iotdsa/dglux-server:${DEFAULT_FLAVOR} iotdsa/dglux-server:${BUILD_NUMBER}
+    docker push iotdsa/dglux-server:${BUILD_NUMBER}
+  fi
 fi
