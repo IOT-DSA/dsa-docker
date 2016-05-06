@@ -1,4 +1,4 @@
-FROM iotdsa/base:latest
+FROM iotdsa/base:debian
 
 RUN mkdir /data
 WORKDIR /app

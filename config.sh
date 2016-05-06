@@ -21,5 +21,11 @@ DOCKER_LINKS=(
 )
 
 echo "== Docker Configuration =="
-echo "Links: ${DOCKER_LINKS[*]}"
+echo "Default Flavor: ${DEFAULT_FLAVOR}"
+echo "Flavors: ${FLAVORS[*]}"
+
+if [[ -z "${BUILD_TYPE}" ]] || [[ "${BUILD_TYPE}" == "links" ]]
+then
+  echo "Links: ${DOCKER_LINKS[*]}"
+fi
 echo "=========================="
