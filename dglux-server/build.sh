@@ -11,7 +11,7 @@ do
   docker build -f ${FLAVOR}/Dockerfile -t "iotdsa/dglux-server:${FLAVOR}" --rm=true .
 done
 
-if [[ *"${@}"* == "--upload" ]]
+if [[ "${@}" == *"--upload"* ]]
 then
   for FLAVOR in ${FLAVORS[*]}
   do
