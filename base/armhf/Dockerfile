@@ -1,8 +1,8 @@
 FROM armv7/armhf-ubuntu:15.10
 MAINTAINER Kenneth Endfinger <k.endfinger@dglogik.com>
 
-# Use Dart Version 1.16.0
-ENV DART_VERSION 1.16.0
+# Use Dart Version 1.17.1
+ENV DART_VERSION 1.17.1
 
 # Install base software
 RUN apt-get update && \

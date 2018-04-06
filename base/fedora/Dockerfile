@@ -1,7 +1,7 @@
 FROM fedora:23
 MAINTAINER Kenneth Endfinger <k.endfinger@dglogik.com>
 
-ENV DART_VERSION 1.16.0
+ENV DART_VERSION 1.17.1
 ENV JAVA_VERSION 8u92
 ENV JAVA_BUILD_VERSION b14
 
