@@ -34,7 +34,7 @@ echo "== Docker Configuration =="
 echo "Default Flavor: ${DEFAULT_FLAVOR}"
 echo "Flavors: ${FLAVORS[*]}"
 
-if [[ -z "${BUILD_TYPE}" ]] || [[ "${BUILD_TYPE}" == "links" ]]
+if [[ "${BUILD_TYPE}" == "links" ]]
 then
   echo "Links: ${DOCKER_LINKS[*]}"
 fi

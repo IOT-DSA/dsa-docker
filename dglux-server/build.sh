@@ -8,22 +8,25 @@ source "$(dirname $0)/../config.sh"
 
 for FLAVOR in ${FLAVORS[*]}
 do
-  docker build -f ${FLAVOR}/Dockerfile -t "iotdsa/dglux-server:${FLAVOR}" --rm=true .
+  docker build --build-arg DIST_BUILD_ID=${BUILD_NUMBER} -f ${FLAVOR}/Dockerfile -t "iotdsa/dglux-server:${FLAVOR}-${BUILD_NUMBER}" --rm=true .
 done
 
 if [[ "${@}" == *"--upload"* ]]
 then
   for FLAVOR in ${FLAVORS[*]}
   do
-    docker push iotdsa/dglux-server:${FLAVOR}
+    docker push iotdsa/dglux-server:${FLAVOR}-${BUILD_NUMBER}
 
-    if [[ ! -z ${BUILD_NUMBER} ]]
+    if [[ "$IS_LATEST_BUILD" == "true" ]]
     then
-      docker tag iotdsa/dglux-server:${FLAVOR} iotdsa/dglux-server:${FLAVOR}-${BUILD_NUMBER}
-      docker push iotdsa/dglux-server:${FLAVOR}-${BUILD_NUMBER}
+      docker tag iotdsa/dglux-server:${FLAVOR}-${BUILD_NUMBER} iotdsa/dglux-server:${FLAVOR}-latest
+      docker push iotdsa/dglux-server:${FLAVOR}-latest
     fi
   done
 
-  docker tag iotdsa/dglux-server:${DEFAULT_FLAVOR} iotdsa/dglux-server:latest
-  docker push iotdsa/dglux-server:latest
+  if [[ "$IS_LATEST_BUILD" == "true" ]]
+  then
+    docker tag iotdsa/dglux-server:${DEFAULT_FLAVOR}-${BUILD_NUMBER} iotdsa/dglux-server:latest
+    docker push iotdsa/dglux-server:latest
+  fi
 fi

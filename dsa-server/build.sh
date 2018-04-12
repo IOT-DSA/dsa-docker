@@ -8,22 +8,25 @@ source "$(dirname $0)/../config.sh"
 
 for FLAVOR in ${FLAVORS[*]}
 do
-  docker build -f ${FLAVOR}/Dockerfile -t "iotdsa/dsa-server:${FLAVOR}" --rm=true .
+  docker build --build-arg DIST_BUILD_ID=${BUILD_NUMBER} -f ${FLAVOR}/Dockerfile -t "iotdsa/dsa-server:${FLAVOR}-${BUILD_NUMBER}" --rm=true .
 done
 
 if [[ "${@}" == *"--upload"* ]]
 then
   for FLAVOR in ${FLAVORS[*]}
   do
-    docker push iotdsa/dsa-server:${FLAVOR}
+    docker push iotdsa/dsa-server:${FLAVOR}-${BUILD_NUMBER}
 
-    if [[ ! -z ${BUILD_NUMBER} ]]
+    if [[ "$IS_LATEST_BUILD" == "true" ]]
     then
-      docker tag iotdsa/dsa-server:${FLAVOR} iotdsa/dsa-server:${FLAVOR}-${BUILD_NUMBER}
-      docker push iotdsa/dsa-server:${FLAVOR}-${BUILD_NUMBER}
+      docker tag iotdsa/dsa-server:${FLAVOR}-${BUILD_NUMBER} iotdsa/dsa-server:${FLAVOR}-latest
+      docker push iotdsa/dsa-server:${FLAVOR}-latest
     fi
   done
 
-  docker tag iotdsa/dsa-server:${DEFAULT_FLAVOR} iotdsa/dsa-server:latest
-  docker push iotdsa/dsa-server:latest
+  if [[ "$IS_LATEST_BUILD" == "true" ]]
+  then
+    docker tag iotdsa/dsa-server:${DEFAULT_FLAVOR}-${BUILD_NUMBER} iotdsa/dsa-server:latest
+    docker push iotdsa/dsa-server:latest
+  fi
 fi
